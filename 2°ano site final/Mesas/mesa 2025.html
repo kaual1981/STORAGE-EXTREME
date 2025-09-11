@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt.br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEEP H.X.V</title>
+    <link rel="icon" href="../img/ceep_@computador.png">
+    <link rel="stylesheet" href="ini.css">
+    <script defer src="ini.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+nav.menu-lateral {
+    width: 80px;
+    height: 100%;
+    background-color: #202020;
+    padding: 40px 0 40px 1%;
+    box-shadow: 4px 0 0 #051875;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: .4s;
+}
+
+nav.menu-lateral.expandir {
+    width: 300px;
+}
+
+.btn-expandir {
+    width: 100%;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-expandir>i {
+    color: white;
+    font-size: 34px;
+    cursor: pointer;
+}
+
+ul {
+    height: 100%;
+    list-style-type: none;
+}
+
+ul li.item-menu {
+    transition: .2s;
+}
+
+ul li.ativo {
+    background-color: #051875;
+
+}
+
+ul li.item-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    padding: 25px 4%;
+    display: flex;
+    margin-bottom: 20px;
+    line-height: 40px;
+}
+
+ul li.item-menu:hover {
+    background: #051875;
+}
+
+ul li.item-menu a .txt-link {
+    margin-left: 70px;
+    transition: .6s;
+    opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link {
+    margin-left: 40px;
+    opacity: 1;
+}
+
+ul li.item-menu a .icon>i {
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+
+
+header {
+    margin-bottom: 50px;
+    /* Espaço abaixo do cabeçalho */
+    background-color: #031050;
+    /* Cor de fundo azul escuro */
+    box-shadow: 0px 3px 10px hsl(234, 97%, 37%);
+    /* Sombra embaixo do cabeçalho */
+}
+
+
+
+.nav-bar {
+    display: flex;
+    /* Usa Flexbox para alinhar os itens horizontalmente */
+    justify-content: space-between;
+    /* Espaço igual entre os elementos */
+    padding: 1.5rem 6rem;
+    /* Espaçamento interno acima/abaixo e esquerda/direita */
+    padding-left: 100px;
+}
+
+
+.copy {
+    margin: 10% 0 0 30%;
+    font-weight: bold;
+    transform: translateX(15%);
+}
+
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 6rem;
+}
+
+
+.login-button {
+    display: flex;
+    align-items: center;
+}
+
+.login-button button {
+    border: none;
+    background-color: #a70101;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.login-button button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.submenu-mesa {
+    max-height: 0;
+    overflow: hidden;
+    transition:  0.4s ease;
+    padding-left: 24px;
+}
+
+/* Links do submenu */
+.submenu-mesa li a {
+    font-size: 14px;
+    color: #ddd;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+    transition: .3s;
+}
+
+.submenu-mesa li a:hover {
+    color: orange;
+}
+
+/* Ícone clicável */
+.submenu-toggle-mesa {
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 30px;
+    color: #ddd;
+    margin-left: 15px;
+}
+
+.submenu-toggle-mesa:hover {
+    color: orange;
+}
+
+
+
+
+.submenu-tcc {
+    max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding-left: 24px;
+}
+
+.submenu-tcc li a {
+  font-size: 14px;
+  color: #ddd;
+  text-decoration: none;
+  display: block;
+  padding: 5px 0;
+  transition: .3s;
+}
+
+.submenu-tcc li a:hover {
+    color: orange;
+}
+
+.submenu-toggle-tcc {
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 30px;
+    color: #ddd;
+}
+
+.submenu-toggle-tcc:hover {
+  color: orange;
+}
+
+
+
+/* Estilo do botão */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #444;
+  padding: 10px;
+  position: fixed;
+  transition: left 0.4s ease;
+  z-index: 9999;
+  margin-left: 7px;
+  
+}
+
+/* Modo escuro: altera cor do ícone */
+body.dark-mode .theme-toggle-btn {
+    color: #f1f1f1;
+}
+
+/* Corpo do site */
+body {
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+.theme-toggle-btn.expandido {
+    left: 310px; /* move junto com a navbar expandida */
+}
+
+
+.bem {
+    margin-left: 40%;
+    margin-top: 13%;
+    font-size: 25px;
+}
+
+.vindo {
+    color: rgb(167, 4, 4);
+
+}
+
+div.PDF{
+    margin-left: 90px;
+
+}
+.mostra{
+    border-radius: 10px;
+    padding: 7px;
+    color:white;
+    background-color:#a70101;
+}
+.limpa{
+    border-radius: 10px;
+    padding: 7px;
+    background-color: #a70101;
+    color: white;
+}
+.salva{
+    border-radius: 10px;
+    margin-right: 20ppx;
+    padding: 7px;
+    background-color: #a70101;
+    color: white;
+}
+
+    </style>
+</head>
+
+<body>
+    
+    <header>
+        
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="../inicio/inicio.html"><img src="../img/ceep_@computador.png" alt="" width="100px"></a>
+            </div>
+            <div class="login-button">
+                <a href="../login/cadastro.html"> </a> <button><a href="../login/login.html">entrar</a></button> </a>
+            </div>
+        </nav>
+
+        <nav class="menu-lateral">
+
+            <div class="btn-expandir">
+                <i class="bi bi-list" id="btn-exp"></i>
+            </div>
+
+            <div class="nav-list">
+                <ul>
+                    <li class="item-menu">
+                        <a href="../tcc/TCC.html" class="tcc-link">
+                            <span class="icon"><i class="bi bi-book"></i></span>
+                            <span class="txt-link">TCCs</span>
+                            <i class="bi bi-list-ol submenu-toggle-tcc"></i>
+                        </a>
+                        <ul class="submenu submenu-tcc">
+                            <li><a href="../bdd/tcc 2025.html">TCC 2025</a></li>
+                            <li><a href="../bdd/tcc 2024.html">TCC 2024</a></li>
+                            <li><a href="../bdd/tcc 2023.html">TCC 2023</a></li>
+                            <li><a href="../bdd/tcc 2022.html">TCC 2022</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="item-menu">
+                        <a href="../Mesa/mesa.html" class="mesas-link">
+                            <span class="icon"><i class="bi bi-table"></i></span>
+                            <span class="txt-link">Mesas</span>
+                            <i class="bi bi-list-ol submenu-toggle-mesa"></i>
+                        </a>
+
+
+                        <ul class="submenu-mesa">
+                            <li><a href="../Mesas/mesa 2025.html">Mesa 2025</a></li>
+                            <li><a href="../Mesas/mesa 2024.html">Mesa 2024</a></li>
+                            <li><a href="../Mesas/mesa 2023.html">Mesa 2023</a></li>
+                            <li><a href="../Mesas/mesa 2022.html">Mesa 2022</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="item-menu">
+                        <a href="../suporte/suporte.html">
+                            <span class="icon"><i class="bi bi-chat-square-text"></i></span>
+                            <span class="txt-link">Suporte</span>
+                        </a>
+                    </li>
+
+                    <li class="item-menu">
+                        <a href="../sobre/sobre.html">
+                            <span class="icon"><i class="bi bi-building"></i></span>
+                            <span class="txt-link">Sobre</span>
+                        </a>
+                    </li>
+                </ul>
+
+
+                <button class="theme-toggle-btn" onclick="toggleDarkMode()">
+                    <i id="theme-icon" class="bi bi-moon-fill"></i>
+                </button>
+
+        </nav>
+        </div>
+
+        
+    </header>
+<div class="PDF">
+    <h2>Selecione a MESA:</h2>
+  <input type="file" id="pdfInput" accept="application/pdf"><br><br>
+  <button onclick="salvarEPDF()" class="salva">Salvar e Mostrar PDF</button>
+  <button onclick="mostrarPDF()" class="mostra">Mostrar PDF do localStorage</button>
+  <button onclick="limparPDF()" class="limpa">Limpar localStorage</button>
+
+  <hr>
+
+  <h3>Visualização das MESA:</h3>
+  <iframe id="pdfViewer" width="100%" height="600px"></iframe>
+</div>
+    <main>
+        <p class="copy">&copy; Criado no Ceep Helio Xavier de Vasconcelos</p>
+    </main>
+
+<script>
+//Selecionar o Menu
+var menuItem = document.querySelectorAll('.item-menu')
+
+function selectlink(){
+    menuItem.forEach((item)=>
+        item.classList.remove('ativo')
+    )
+    this.classList.add('ativo')
+}
+
+menuItem.forEach((item)=>
+    item.addEventListener('click', selectlink)
+
+
+
+)
+
+//Expandir Menu
+
+var btnExp = document.querySelector('#btn-exp')
+var menusite = document.querySelector('.menu-lateral')
+
+
+btnExp.addEventListener('click', function(){
+    menusite.classList.toggle('expandir')
+    
+    
+})
+
+document.querySelector('.submenu-toggle-mesa').addEventListener('click', function (e) {
+    // Impede que o clique no ícone "123" acione o redirecionamento do <a>
+    e.preventDefault();
+    e.stopPropagation();
+
+    const submenu = document.querySelector(".submenu-mesa");
+
+    if (submenu.classList.contains("open")) {
+        submenu.style.maxHeight = submenu.scrollHeight + "px";
+        submenu.offsetHeight;
+        submenu.style.maxHeight = "0";
+        submenu.classList.remove("open");
+    } else {
+        submenu.style.maxHeight = submenu.scrollHeight + "px";
+        submenu.classList.add("open");
+
+        submenu.addEventListener("transitionend", function tidy(e) {
+            if (e.propertyName === "max-height" && submenu.classList.contains("open")) {
+                submenu.style.maxHeight = "none";
+                submenu.removeEventListener("transitionend", tidy);
+            }
+        });
+    }
+});
+
+document.querySelector('.submenu-toggle-tcc').addEventListener('click', function (e) {
+  // Impede redirecionamento
+  e.preventDefault();
+  e.stopPropagation();
+
+  const submenu = document.querySelector(".submenu-tcc");
+
+  if (submenu.classList.contains("open")) {
+    submenu.style.maxHeight = submenu.scrollHeight + "px"; // Força cálculo
+    submenu.offsetHeight; // Força reflow
+    submenu.style.maxHeight = "0";
+    submenu.classList.remove("open");
+  } else {
+    submenu.style.maxHeight = submenu.scrollHeight + "px";
+    submenu.classList.add("open");
+
+    submenu.addEventListener("transitionend", function tidy(ev) {
+      if (ev.propertyName === "max-height" && submenu.classList.contains("open")) {
+        submenu.style.maxHeight = "none";
+        submenu.removeEventListener("transitionend", tidy);
+      }
+    });
+  }
+});
+
+
+ function toggleDarkMode() {
+    const isDark = document.body.classList.toggle('dark-mode');
+
+    // Salvar tema no localStorage
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+    // Atualizar ícone
+    const icon = document.getElementById('theme-icon');
+    icon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+  }
+
+  // Aplicar tema salvo ao carregar a página
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    const icon = document.getElementById('theme-icon');
+
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      icon.className = 'bi bi-sun-fill';
+    } else {
+      icon.className = 'bi bi-moon-fill';
+    }
+  });
+
+
+   function salvarEPDF() {
+      const fileInput = document.getElementById('pdfInput');
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert("Selecione um arquivo PDF.");
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const base64 = e.target.result.split(',')[1]; // Remove o prefixo "data:application/pdf;base64,"
+        localStorage.setItem('meuPDFbase64', base64);
+        mostrarPDF(); // Exibe após salvar
+      };
+
+      reader.readAsDataURL(file); // Lê o PDF como base64
+    }
+
+    function mostrarPDF() {
+      const base64 = localStorage.getItem('meuPDFbase64');
+      if (!base64) {
+        alert("Nenhum PDF encontrado no localStorage.");
+        return;
+      }
+      const iframe = document.getElementById('pdfViewer');
+      iframe.src = "data:application/pdf;base64," + base64;
+    }
+
+    function limparPDF() {
+      localStorage.removeItem('meuPDFbase64');
+      document.getElementById('pdfViewer').src = '';
+      alert("PDF removido do localStorage.");
+    }
+
+    // Opcional: mostrar PDF automaticamente se já estiver salvo
+    window.onload = function () {
+      if (localStorage.getItem('meuPDFbase64')) {
+        mostrarPDF();
+      }
+    };
+
+
+</script>
+
+
+</body>
+
+</html>

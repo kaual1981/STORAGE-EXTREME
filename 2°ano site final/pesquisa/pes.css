@@ -1,0 +1,32 @@
+.buscaTCC {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.lupa_1{
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.lupa_2 {
+    width: 35px;
+
+}
+
+#listaTCCs {
+    list-style-type: none;
+    padding: 0;
+}
+
+.li {
+    padding: 10px;
+    background-color: #ffffff;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
